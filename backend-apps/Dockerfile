@@ -28,5 +28,5 @@ COPY --from=Build /app/package*.json ./
 # expose the port the app runs on
 EXPOSE 3000
 
-# run the application
-CMD ["npm", "start"]
+# run the built application
+CMD ["node", "dist/index.js"]
