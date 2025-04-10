@@ -38,4 +38,5 @@ jobs:
               docker buildx build \
                 --platform linux/amd64,linux/arm64 \
                 -t akkharaphopmakanat/nxz-devops-pretest:latest \
-                --push .
+                -f backend-apps/Dockerfile \
+                --push backend-apps
