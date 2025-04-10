@@ -1,4 +1,4 @@
-FROM node:22.13.1 AS Build
+FROM node:22.13.1 AS build
 
 # setup working directory
 WORKDIR /app
@@ -16,14 +16,14 @@ COPY . .
 # build the application
 RUN npm run build
 
-FROM node:22.13.1 AS Run
+FROM node:22.13.1 AS run
 
 WORKDIR /app
 
 # copy the built files
-COPY --from=Build /app/dist ./dist
-COPY --from=Build /app/node_modules ./node_modules
-COPY --from=Build /app/package*.json ./
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
 
 # expose the port the app runs on
 EXPOSE 3000
