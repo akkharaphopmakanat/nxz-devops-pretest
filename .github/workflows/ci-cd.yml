@@ -55,6 +55,12 @@ jobs:
             working-directory: ./infra-code 
 
 
+        # Step 8: Terraform Destroy
+          - name: Terraform Destroy
+            run: terraform destroy -auto-approve
+            working-directory: ./infra-code
+
+
         # Step 8: Terraform Plan
           - name: Terraform Plan
             run: terraform plan
