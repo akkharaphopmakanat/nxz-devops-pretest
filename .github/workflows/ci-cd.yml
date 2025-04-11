@@ -67,10 +67,10 @@ jobs:
 
         # Step 8: Terraform Plan
           - name: Terraform Plan
-            run: terraform plan -var="deployment_name=$DEPLOYMENT_NAME " -var="service_name=$SERVICE_NAME"
+            run: terraform plan -var="deployment_name=$DEPLOYMENT_NAME" -var="service_name=$SERVICE_NAME"
             working-directory: ./infra-code
 
         # Step 9: Terraform Apply
           - name: Terraform Apply
-            run: terraform apply -auto-approve -var="deployment_name=$DEPLOYMENT_NAME " -var="service_name=$SERVICE_NAME"
+            run: terraform apply -auto-approve -var="deployment_name=$DEPLOYMENT_NAME" -var="service_name=$SERVICE_NAME"
             working-directory: ./infra-code
