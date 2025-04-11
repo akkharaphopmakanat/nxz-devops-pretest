@@ -51,10 +51,10 @@ resource "kubernetes_service" "nxz_app_service" {
     }
 
     port {
-      port        = 80
+      port        = 3000
       target_port = 3000
     }
 
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }
