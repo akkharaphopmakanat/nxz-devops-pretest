@@ -42,3 +42,25 @@ jobs:
                 -t akkharaphopmakanat/nxz-devops-pretest:latest \
                 -f backend-apps/Dockerfile \
                 --push backend-apps
+
+        # Step 6: Set up Terraform 
+          - name: Set up Terraform
+            uses: hashicorp/setup-terraform@v1
+            with:
+              terraform_version: '1.11.3'
+
+        # Step 7: Initialize Terraform
+          - name: Terraform Init
+            run: terraform init
+            working-directory: ./infra-code 
+
+
+        # Step 8: Terraform Plan
+          - name: Terraform Plan
+            run: terraform plan
+            working-directory: ./infra-code
+
+        # Step 9: Terraform Apply
+          - name: Terraform Apply
+            run: terraform apply -auto-approve
+            working-directory: ./infra-code
