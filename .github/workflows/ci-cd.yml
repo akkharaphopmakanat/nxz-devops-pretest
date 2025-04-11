@@ -54,12 +54,11 @@ jobs:
             run: terraform init
             working-directory: ./infra-code 
 
-
-        # Step 8: Terraform Destroy
-          - name: Terraform Destroy
-            run: terraform destroy -auto-approve
-            working-directory: ./infra-code
-
+        # Step 7: Delete existing Kubernetes deployment and service
+          - name: Delete existing Kubernetes resources
+            run: |
+              kubectl delete deployment nxz-app
+              kubectl delete svc nxz-service
 
         # Step 8: Terraform Plan
           - name: Terraform Plan
