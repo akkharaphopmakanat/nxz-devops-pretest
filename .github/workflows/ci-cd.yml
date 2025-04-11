@@ -11,6 +11,9 @@ on:
 jobs:
     build:
         runs-on: self-hosted
+        env:
+          DEPLOYMENT_NAME: ${{ vars.DEPLOYMENT_NAME }}
+          SERVICE_NAME: ${{ vars.SERVICE_NAME }}
 
         steps:
         # Step 1: Checkout the code
