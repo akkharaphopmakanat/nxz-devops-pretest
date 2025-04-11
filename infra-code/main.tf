@@ -4,7 +4,7 @@ provider "kubernetes" {
 
 resource "kubernetes_deployment" "nxz_app" {
   metadata {
-    name = "nxz-app"
+    name = var.deployment_name 
     labels = {
       app = "nxz"
     }
@@ -42,7 +42,7 @@ resource "kubernetes_deployment" "nxz_app" {
 # Kubernetes Service
 resource "kubernetes_service" "nxz_app_service" {
   metadata {
-    name = "nxz-service"
+    name = var.service_name
   }
 
   spec {
