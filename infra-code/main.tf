@@ -30,7 +30,7 @@ resource "kubernetes_deployment" "nxz_app" {
         container {
           name  = "nxz-container"
           image = "akkharaphopmakanat/nxz-devops-pretest:latest"
-          ports {
+          port {
             container_port = 3000
           }
         }
