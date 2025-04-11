@@ -35,13 +35,13 @@ jobs:
               password: ${{ secrets.DOCKER_PAT_TOKEN }}
 
         # Step 5: Build and push Docker image
-          - name: Build and push Docker image
-            run: |
-              docker buildx build \
-                --platform linux/amd64,linux/arm64 \
-                -t akkharaphopmakanat/nxz-devops-pretest:latest \
-                -f backend-apps/Dockerfile \
-                --push backend-apps
+          # - name: Build and push Docker image
+          #   run: |
+          #     docker buildx build \
+          #       --platform linux/amd64,linux/arm64 \
+          #       -t akkharaphopmakanat/nxz-devops-pretest:latest \
+          #       -f backend-apps/Dockerfile \
+          #       --push backend-apps
 
         # Step 6: Set up Terraform 
           - name: Set up Terraform
