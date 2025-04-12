@@ -61,9 +61,8 @@ jobs:
         # Step 7: Delete existing Kubernetes deployment and service
           - name: Delete existing Kubernetes resources
             run: |
-              echo "Deleting deployment: $DEPLOYMENT_NAME"
               kubectl delete deployment $DEPLOYMENT_NAME || true
-              echo "Deleting service: $SERVICE_NAME"
+              echo "Deleting service: ${IMAGE_TAG}"
               kubectl delete svc $SERVICE_NAME || true
 
         # Step 8: Terraform Plan
