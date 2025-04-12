@@ -43,7 +43,7 @@ jobs:
             run: |
               docker buildx build \
                 --platform linux/amd64 \
-                -t akkharaphopmakanat/nxz-devops-pretest:${IMAGE_TAG} \
+                -t akkharaphopmakanat/nxz-devops-pretest:$IMAGE_TAG \
                 -f backend-apps/Dockerfile \
                 --push backend-apps
 
@@ -62,15 +62,15 @@ jobs:
           - name: Delete existing Kubernetes resources
             run: |
               kubectl delete deployment $DEPLOYMENT_NAME || true
-              echo "Deleting service: ${IMAGE_TAG}"
+              echo "Deleting service: $IMAGE_TAG"
               kubectl delete svc $SERVICE_NAME || true
 
         # Step 8: Terraform Plan
           - name: Terraform Plan
-            run: terraform plan -var="deployment_name=$DEPLOYMENT_NAME" -var="service_name=$SERVICE_NAME" -var="image_tag=${IMAGE_TAG}"
+            run: terraform plan -var="deployment_name=$DEPLOYMENT_NAME" -var="service_name=$SERVICE_NAME" -var="image_tag=$IMAGE_TAG"
             working-directory: ./infra-code
 
         # Step 9: Terraform Apply
           - name: Terraform Apply
-            run: terraform apply -auto-approve -var="deployment_name=$DEPLOYMENT_NAME" -var="service_name=$SERVICE_NAME" -var="image_tag=${IMAGE_TAG}"
+            run: terraform apply -auto-approve -var="deployment_name=$DEPLOYMENT_NAME" -var="service_name=$SERVICE_NAME" -var="image_tag=$IMAGE_TAG"
             working-directory: ./infra-code
