@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "nxz_app" {
       spec {
         container {
           name  = "nxz-container"
-          image = "akkharaphopmakanat/nxz-devops-pretest:latest"
+          image = "akkharaphopmakanat/nxz-devops-pretest:${var.image_tag}"
           port {
             container_port = 3000
           }

@@ -9,3 +9,8 @@ variable "service_name" {
   type        = string
   default     = "nxz-service"
 }
+
+variable "image_tag" {
+  description = "Docker image tag"
+  type        = string
+}
