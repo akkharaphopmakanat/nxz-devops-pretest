@@ -42,6 +42,7 @@ jobs:
             run: |
               docker buildx build \
                 --platform linux/amd64 \
+                --builder default \
                 -t akkharaphopmakanat/nxz-devops-pretest:$IMAGE_TAG \
                 -f backend-apps/Dockerfile \
                 --push \
