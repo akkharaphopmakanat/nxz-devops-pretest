@@ -62,7 +62,7 @@ jobs:
           - name: Delete existing Kubernetes resources
             run: |
               kubectl delete deployment $DEPLOYMENT_NAME || true
-              echo "Deleting service: $IMAGE_TAG"
+              echo Image Tag: $IMAGE_TAG"
               kubectl delete svc $SERVICE_NAME || true
 
         # Step 8: Terraform Plan
