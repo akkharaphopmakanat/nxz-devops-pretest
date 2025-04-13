@@ -1,9 +1,6 @@
-name: CI/CD Pipeline
+name: PR CI Build
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
   pull_request:
     branches:
       - main
@@ -14,7 +11,7 @@ jobs:
         env:
           DEPLOYMENT_NAME: ${{ vars.DEPLOYMENT_NAME }}
           SERVICE_NAME: ${{ vars.SERVICE_NAME }}
-          IMAGE_TAG: ${{ github.ref_name }}
+          IMAGE_TAG: latest
 
         steps:
         # Step 1: Checkout the code
@@ -62,7 +59,6 @@ jobs:
           - name: Delete existing Kubernetes resources
             run: |
               kubectl delete deployment $DEPLOYMENT_NAME || true
-              echo "Image Tag: $IMAGE_TAG"
               kubectl delete svc $SERVICE_NAME || true
 
         # Step 8: Terraform Plan
@@ -71,6 +67,4 @@ jobs:
             working-directory: ./infra-code
 
         # Step 9: Terraform Apply
-          - name: Terraform Apply
-            run: terraform apply -auto-approve -var="deployment_name=$DEPLOYMENT_NAME" -var="service_name=$SERVICE_NAME" -var="image_tag=$IMAGE_TAG"
-            working-directory: ./infra-code
+        # No more apply because this is a PR , we will just run the plan to avoid risk or deploy to test/dev server...
